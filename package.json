@@ -1,46 +1,30 @@
 {
   "name": "xuppronix-bot",
   "version": "1.0.0",
-  "description": "Telegram bot for Xuppronix customer service and pricing with WhatsApp integration",
-  "main": "bot.js",
+  "description": "Xuppronix Telegram Bot with Dashboard",
+  "main": "index.js",
   "scripts": {
-    "start": "node bot.js",
-    "dev": "nodemon bot.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "install-deps": "npm install && npm audit fix",
-    "setup": "mkdir -p temp && echo 'Setup complete'"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "dependencies": {
-    "node-telegram-bot-api": "^0.61.0",
+    "node-telegram-bot-api": "^0.64.0",
     "express": "^4.18.2",
-    "mongoose": "^7.5.0",
-    "axios": "^1.5.0",
-    "dotenv": "^16.3.1",
-    "cors": "^2.8.5",
     "body-parser": "^1.20.2",
-    "whatsapp-web.js": "^1.23.0",
-    "qrcode": "^1.5.3",
-    "qrcode-terminal": "^0.12.0",
-    "geoip-lite": "^1.4.7",
-    "i18n": "^0.15.1",
-    "node-cron": "^3.0.2",
-    "config": "^3.3.9"
+    "json2csv": "^6.0.0",
+    "cron": "^2.3.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
   },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "keywords": [
     "telegram",
     "bot",
-    "whatsapp",
-    "pricing",
-    "customer-service",
-    "xuppronix"
+    "dashboard"
   ],
   "author": "Xuppronix Team",
-  "license": "ISC",
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=7.0.0"
-  }
+  "license": "MIT"
 }
