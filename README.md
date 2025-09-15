@@ -2,7 +2,9 @@
 
 A feature-rich Telegram bot with dashboard for Xuppronix services, built with Node.js and Express.
 
-https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white
+https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white 
+https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white 
+https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white
 
 ✨ Features
 
