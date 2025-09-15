@@ -1,32 +1,54 @@
-name: Deploy to Render
+name: Node.js CI/CD
 
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  workflow_dispatch: # Manual trigger
 
 jobs:
-  deploy:
+  build-and-test:
     runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
 
-    - name: Setup Node.js
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
-        node-version: '18'
+        node-version: ${{ matrix.node-version }}
         cache: 'npm'
-
+        
     - name: Install dependencies
       run: npm ci
-
-    - name: Run tests (if any)
+      
+    - name: Run linting
+      run: npm run lint --if-present
+      
+    - name: Run tests
       run: npm test --if-present
+      
+    - name: Build
+      run: npm run build --if-present
 
-    - name: Notify Render (Webhook Deployment)
-      if: github.ref == 'refs/heads/main'
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Deploy to Render
       run: |
-        curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
+        curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
+        
+    - name: Notify Telegram on success
+      if: success()
+      run: |
+        curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage \
+          -d chat_id=${{ secrets.ADMIN_CHAT_ID }} \
+          -d text="✅ Deployment successful! New version of Xuppronix bot is live."
