@@ -4,7 +4,7 @@ const fs = require("fs");
 const cron = require("node-cron");
 const express = require("express");
 const bodyParser = require("body-parser");
-const { Parser } = require("json2csv");
+const { Parser } = require("@json2csv/plainjs");
 const path = require("path");
 
 // === CONFIG ===
